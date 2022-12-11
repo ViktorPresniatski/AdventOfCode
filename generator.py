@@ -3,7 +3,8 @@ import sys
 year = sys.argv[1]
 task_number = sys.argv[2]
 
-body = f"""import utils as ut
+body = f"""import numpy as np
+import utils as ut
 
 
 def task_1():

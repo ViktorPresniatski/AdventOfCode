@@ -1,5 +1,14 @@
 import inspect
+import numpy as np
 from pathlib import Path
+
+
+def get_input_file():
+    prev_exec_func = inspect.stack()[2][0]
+    cur_module = inspect.getmodule(prev_exec_func)
+    cur_path = Path(cur_module.__file__)
+    task_number = cur_path.stem.lstrip('t')
+    return Path(cur_module.__file__).parent / 'data' / f'input{task_number}.txt'
 
 
 def read_file(filename):
@@ -7,15 +16,17 @@ def read_file(filename):
 
 
 def read(t=str, group=False):
-    prev_exec_func = inspect.stack()[1][0]
-    cur_module = inspect.getmodule(prev_exec_func)
-    cur_path = Path(cur_module.__file__)
-    task_number = cur_path.stem.lstrip('t')
-    input_file = Path(cur_module.__file__).parent / 'data' / f'input{task_number}.txt'
+    input_file = get_input_file()
     text = read_file(input_file)
     if group:
         return list(map(lambda a: list(map(t, a.split('\n'))), text.split('\n\n')))
     return list(map(t, text.split('\n')))
+
+
+def read_matrix(t=str):
+    input_file = get_input_file()
+    text = read_file(input_file)
+    return np.array([[t(el) for el in row] for row in text.split('\n')])
 
 
 def get_batch(items, max_count):

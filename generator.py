@@ -8,10 +8,12 @@ import utils as ut
 
 
 def task_1():
+    print("------TASK-2------")
     file = ut.read()
 
 
 def task_2():
+    print("------TASK-2------")
     file = ut.read()
 """
 

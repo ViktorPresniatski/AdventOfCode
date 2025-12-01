@@ -1,4 +1,4 @@
-#!/Users/presniatski/miniconda3/bin/python
+#!/Users/wpresniacki/.pyenv/shims/python
 import importlib
 import sys
 
